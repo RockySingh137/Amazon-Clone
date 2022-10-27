@@ -18,12 +18,7 @@ const Newnav = () => {
 
                 </div>
                 <div className="right_data">
-                <p>Fashion</p>
-                <p>Customer service</p>
-                <p>Electronics</p>
-                <p>Prime</p>
-                <p>Today's deal</p>
-                <p>Amazon Pay</p>
+                <img src="./nav.jpg" alt="nav_img" />
                 </div>
             </div>
         </div>
