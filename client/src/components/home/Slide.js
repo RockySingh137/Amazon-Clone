@@ -2,26 +2,29 @@ import React from 'react'
 import "./slide.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { products } from './productdata';
 import { Divider } from '@mui/material';
+//import {products} from './productdata'
 
 
 const responsive = {
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 4
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      
     },
     tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      
     },
     mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 1
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      
     }
-};
+  };
 
-const Slide = ({ title, products }) => {
+const Slide = ({title,products}) => {
 
 
     return (
@@ -39,7 +42,7 @@ const Slide = ({ title, products }) => {
                 swipeable={true}
                 centerMode={true}
                 autoPlay={true}
-                autoPlaySpeed={4000}
+                autoPlaySpeed={2000}
                 keyBoardControl={true}
                 showDots={false}
                 removeArrowOnDeviceType={["tablet", "mobile"]}
@@ -48,7 +51,7 @@ const Slide = ({ title, products }) => {
                 containerClass="carousel-container"
             >
                 {
-                    products.map((e) => {
+                    products.map((e)=>{
                         return (
                             
                                 <div className="products_items">
