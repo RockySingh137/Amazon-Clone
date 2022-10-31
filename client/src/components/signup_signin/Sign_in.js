@@ -1,7 +1,9 @@
 import React from 'react'
 import './signup.css'
+import { NavLink } from 'react-router-dom'
 
 const Sign_in = () => {
+    
     return (
         <>
             <section>
@@ -15,23 +17,22 @@ const Sign_in = () => {
                   <div className="form_data">
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email"
-                                onChange={adddata}
-                                value={logdata.email}
+                                
+                                
                                 id="email" />
                         </div>
                         <div className="form_data">
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password"
-                                onChange={adddata}
-                                value={logdata.password}
+                               
                                 id="password" placeholder="At least 6 characters" />
                         </div>
-                        <button type="submit" className="signin_btn" onClick={senddata}>Continue</button>
+                        <button type="submit" className="signin_btn" >Continue</button>
                   </form>
                   </div>
                   <div className="create_accountinfo">
                   <p>New to Amazon?</p>
-                  <button>  <NavLink to="/signup">Create your Amazon Account</NavLink></button>
+                   <NavLink to='/register' ><button>  Create your Amazon Account</button></NavLink>
               </div>
                  </div>
             </section>
