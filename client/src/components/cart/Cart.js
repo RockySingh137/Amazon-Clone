@@ -37,6 +37,35 @@ const Cart = () => {
                 setIndedata(data);
             }
         };
+        useEffect(() => {
+            setTimeout(getinddata, 1000)
+        }, [id]);
+    
+        const addtocart = async (id) => {
+            console.log(id);
+            const check = await fetch(`/addcart/${id}`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    inddata
+                }),
+                credentials: "include"
+            });
+            // console.log(check);
+            const data1 = await check.json();
+            // console.log(data1 +  'ok');
+    
+            if (check.status !== 201) {
+                alert("no data available")
+            } else {
+                // console.log("cart add ho gya hain");
+                setAccount(data1)
+                history.push("/buynow");
+            }
+        }
   return (
     <div className="cart_section">
     {inddata && Object.keys(inddata).length &&
