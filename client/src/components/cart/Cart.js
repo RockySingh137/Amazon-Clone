@@ -1,6 +1,42 @@
 import React from 'react'
 
 const Cart = () => {
+    const Cart = () => {
+
+        const { account, setAccount } = useContext(Logincontext);
+        // console.log(account);
+    
+    
+    
+        const { id } = useParams("");
+        // console.log(id);
+    
+        const history = useHistory();
+    
+        const [inddata, setIndedata] = useState("");
+    
+        // console.log([inddata]);
+    
+        const getinddata = async () => {
+            const res = await fetch(`/getproductsone/${id}`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+    
+            const data = await res.json();
+            // console.log(data);
+    
+            if (res.status !== 201) {
+                alert("no data available")
+            } else {
+                // console.log("ind mila hain");
+                setIndedata(data);
+            }
+        };
   return (
     <div className="cart_section">
     {inddata && Object.keys(inddata).length &&
@@ -24,7 +60,11 @@ const Cart = () => {
                 <div className="discount_box">
                     <h5 >Discount : <span style={{ color: "#111" }}>{inddata.discount}</span> </h5>
                     <h4>FREE Delivery : <span style={{ color: "#111", fontWeight: "600" }}>Oct 8 - 21</span> Details</h4>
+                    </div>
+                    </div>
+                    
   )
-}
+
+)
 
 export default Cart
