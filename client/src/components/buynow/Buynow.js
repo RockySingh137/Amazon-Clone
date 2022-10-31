@@ -1,8 +1,61 @@
-import React from 'react'
+import { Divider } from '@mui/material';
+import React, { useEffect, useState } from 'react'
+import './buynow.css'
+import Empty from './Empty';
+import Option from './Option';
+import Right from './Right';
+import Subtotal from './Subtotal';
 
 const Buynow = () => {
-  return (
-    <>
+
+    const [cartdata, setCartdata] = useState("");
+    // console.log(cartdata.length);
+
+    const getdatabuy = async () => {
+        const res = await fetch("/cartdetails", {
+            method: "GET",
+            headers: {
+                Accept:"application/json",
+                "Content-Type": "application/json"
+            },
+            credentials:"include"
+        });
+
+        const data = await res.json();
+        // console.log(data.carts);
+
+        if (res.status !== 201) {
+            alert("no data available")
+        } else {
+            // console.log("data cart main hain");
+            setCartdata(data.carts);
+        }
+    };
+
+
+
+    useEffect(() => {
+        getdatabuy();
+    }, []);
+
+
+    // const [price, setPrice] = useState(0);
+    // const totalAmount = () => {
+    //     let price = 0
+    //     cartdata.map((e) => {
+    //         price += e.price.cost
+    //     })
+    //     setPrice(price)
+    // }
+
+    // useEffect(() => {
+    //     totalAmount();
+    // }, [cartdata]);
+
+    
+
+    return (
+        <>
             {cartdata.length ?
                 <div className="buynow_section">
                     <div className="buynow_container">
@@ -35,15 +88,19 @@ const Buynow = () => {
                                 })
                             }
                          
-                            
+                            <Subtotal iteam={cartdata} />
                         </div>
-                       
+                        <Right iteam={cartdata} />
                     </div>
-                </div>
+                </div> : <Empty />
             }
         </>
-    
-  )
+    )
 }
 
-export default Buynow
+export default Buynow;
+
+
+// thodu changes krya 6 carts ni andr cart htu bt tene remove karine 
+// je pramane aapdo normal data save 6 te rite bnavyu
+// jo carts ni andr cart use kro to tmare map call kravya pachi pn e.cart.discount
